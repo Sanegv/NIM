@@ -10,13 +10,6 @@
 void menu();
 
 /**
- * @brief prend en entrée le numéro de l'ordinateur (0 ou 1) et joue une partie en utilisant des coups aléatoires
- * 
- * @param ia 
- */
-void jeu_ia_simple(int ia);
-
-/**
  * @brief sélectionne une ligne aléatoire, et y retire un nombre aléatoire d'allumettes
  * 
  * @param jeu 
@@ -28,7 +21,7 @@ void tour_ia_simple(jeu* j);
  * 
  * @param ia 
  */
-void jeu_ia_hard(int ia);
+void jeu_ia(int ia, void(*tour)(jeu*));
 
 /**
  * @brief joue un coup parfait si possible (en utilisant la somme de NIM), appelle tour_ia_simple() sinon

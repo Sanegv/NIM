@@ -17,8 +17,8 @@
 			printf("Entrez 1 ou 2\n>");
 			scanf("%d", &choix);
 		}
-		if(choix == 1) jeu_ia_simple(choix_tour());
-		else if(choix == 2) jeu_ia_hard(choix_tour());
+		if(choix == 1) jeu_ia(choix_tour(), tour_ia_simple);
+		else if(choix == 2) jeu_ia(choix_tour(), tour_ia_hard);
     }
  }
 
@@ -35,31 +35,13 @@
 	check_max(j);
  }
 
- void jeu_ia_simple(int ia){
+void jeu_ia(int ia, void(*tour)(jeu*)){
 	jeu j = param_jeu();
 	int joueur = 0;
 	print_jeu(j);
 
 	do{
-		if(joueur == ia) tour_ia_simple(&j);
-		else(tour_humains(&j));
-		joueur = !joueur;
-		print_jeu(j);
-	} while(!check_victoire(j));
-
-	if((j.misere && (joueur == ia)) || (!j.misere && (joueur != ia))) printf("\nPerdu... !\n"); //si l'IA a joué le dernier coup en misère ou que le joueur a joué le dernier coup sans misère, il gagne
-	else printf("\nFélicitations !\n"); //sinon il perd
-
-	free_jeu(j);
- }
-
- void jeu_ia_hard(int ia){
-	jeu j = param_jeu();
-	int joueur = 0;
-	print_jeu(j);
-
-	do{
-		if(joueur == ia) tour_ia_hard(&j);
+		if(joueur == ia) tour(&j);
 		else(tour_humains(&j));
 		joueur = !joueur;
 		print_jeu(j);
